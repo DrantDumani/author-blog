@@ -1,11 +1,16 @@
 import { Outlet } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
 
 // the dashboard
 function Dashboard() {
   return (
     <>
-      <h1>lamo this is the dashboard page</h1>
-      <Outlet />
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }
