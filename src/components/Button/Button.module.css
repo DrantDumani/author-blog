@@ -1,0 +1,7 @@
+.btnDefault {
+  padding: 6px;
+  border: 1.5px solid #000;
+  border-radius: 4px;
+  background-color: #54eb8d;
+  cursor: pointer;
+}

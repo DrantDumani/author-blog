@@ -12,7 +12,7 @@ export const loginAction = async ({ request }) => {
   const data = await resp.json();
   if (resp.ok) {
     localStorage.setItem("token", data.token);
-    redirect("/");
+    return redirect("/");
   } else if (resp.status === 401) {
     return data.err;
   } else throw new Response("Internal Server Error");
