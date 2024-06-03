@@ -1,0 +1,12 @@
+@value variables: "../../styles/variables.css";
+@value mobPad from variables;
+
+.header,
+.main {
+  padding: mobPad;
+}
+
+.header {
+  border-bottom: 1.5px solid #000;
+  background-color: #d6a575;
+}

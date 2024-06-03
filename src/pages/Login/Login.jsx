@@ -34,7 +34,7 @@ function Login() {
   return (
     <div className={styles.formWrapper}>
       <h1 className={styles.title}>Log In</h1>
-      <FormComponent>
+      <FormComponent method="POST" action="/login">
         <InputWrapper
           label="Email:"
           value={email}
