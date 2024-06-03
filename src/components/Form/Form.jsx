@@ -1,14 +1,9 @@
 import styles from "./Form.module.css";
 import { Form } from "react-router-dom";
 
-function FormComponent({ children, submitHandler = () => {} }) {
+function FormComponent({ children, method = "GET", action = "/" }) {
   return (
-    <Form
-      method="post"
-      action="/login"
-      className={styles.form}
-      // onSubmit={submitHandler}
-    >
+    <Form method={method} action={action} className={styles.form}>
       {children}
     </Form>
   );
