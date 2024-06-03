@@ -7,7 +7,11 @@ function Button({
   btnText,
 }) {
   return (
-    <button className={styles["btnDefault"]} type={type} onClick={clickHandler}>
+    <button
+      className={styles[`btn${color}`]}
+      type={type}
+      onClick={clickHandler}
+    >
       {btnText}
     </button>
   );
