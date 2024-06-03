@@ -1,15 +1,22 @@
 import Login from "../pages/Login/Login";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import Home from "../pages/Home/Home";
+import Dashboard from "../components/Dashboard/Dashboard";
 import Search from "../pages/Search/Search";
 import Post from "../pages/Post/Post";
 import ErrorPage from "../pages/Error/ErrorPage";
 import { loginAction } from "../utils/actions";
+import { getPosts } from "../utils/loaders";
 
 const routes = [
   {
     path: "/",
-    element: <Dashboard />,
+    element: <Home />,
     children: [
+      {
+        path: "/",
+        element: <Dashboard />,
+        loader: getPosts,
+      },
       {
         element: <Search />,
         path: "/search",
