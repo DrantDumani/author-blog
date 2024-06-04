@@ -1,11 +1,26 @@
 export const getPosts = async () => {
-  // edit this to manage params later
-  const resp = await fetch("http://localhost:3000/posts", { mode: "cors" });
-  const data = await resp.json();
+  const token = localStorage.getItem("token");
+  const resp = await fetch("http://localhost:3000/posts", {
+    mode: "cors",
+    headers: { Authorization: `Bearer ${token}` },
+  });
   if (resp.ok) {
-    console.log(data.posts);
+    const data = await resp.json();
     return data.posts;
   } else {
     throw new Response("Error retrieving posts");
   }
+};
+
+export const getSinglePost = async ({ params }) => {
+  const token = localStorage.getItem("token");
+  const resp = await fetch(`http://localhost:3000/posts/${params.postId}`, {
+    mode: "cors",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (resp.ok) {
+    const post = await resp.json();
+    return post;
+  } else throw new Response("Post not found");
 };

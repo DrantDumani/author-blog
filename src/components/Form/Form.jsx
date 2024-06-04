@@ -1,11 +1,11 @@
 import styles from "./Form.module.css";
 import { Form } from "react-router-dom";
 
-function FormComponent({ children, method = "GET", action = "/" }) {
+function FormComponent({ children, method = "GET", action, submitHandler }) {
   return (
-    <Form method={method} action={action} className={styles.form}>
+    <form className={styles.form} onSubmit={submitHandler}>
       {children}
-    </Form>
+    </form>
   );
 }
 

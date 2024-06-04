@@ -1,27 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FormComponent from "../../components/Form/Form";
 import InputWrapper from "../../components/InputWrapper/InputWrapper";
 import Button from "../../components/Button/Button";
 import styles from "./Login.module.css";
-import { useActionData, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { handleData } from "../../utils/actions";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const err = useActionData();
+  const [err, setErr] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const payload = JSON.parse(window.atob(token.split(".")[1]));
-      if (Date.now < payload.exp * 1000) {
-        return false;
-      } else {
-        navigate("/");
-      }
-    }
-  }, []);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -31,10 +20,25 @@ function Login() {
     setPassword(e.target.value);
   };
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const input = { email, password };
+    const resp = await handleData("users/loginAuthor", input, "POST");
+
+    const data = await resp.json();
+    if (resp.ok) {
+      localStorage.setItem("token", data.token);
+      console.log("Sure");
+      navigate("/");
+    } else if (resp.status === 401) {
+      setErr(data.err);
+    } else throw new Response("Internal Server Error");
+  };
+
   return (
     <div className={styles.formWrapper}>
       <h1 className={styles.title}>Log In</h1>
-      <FormComponent method="POST" action="/login">
+      <FormComponent submitHandler={handleLogin}>
         <InputWrapper
           label="Email:"
           value={email}

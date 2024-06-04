@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 function InputWrapper({
   label,
-  handleInput,
+  handleInput = () => {},
   value,
   type = "text",
   name,
@@ -18,22 +18,35 @@ function InputWrapper({
     </label>
   );
 
-  const input = (
-    <input
-      className={styles.input}
-      id={id}
-      name={name}
-      value={value}
-      onInput={handleInput}
-      type={type}
-      required={isRequired}
-    />
-  );
+  const input =
+    type === "textarea" ? (
+      <textarea
+        rows={8}
+        className={styles.input}
+        id={id}
+        name={name}
+        value={value}
+        onInput={handleInput}
+        type={type}
+        required={isRequired}
+      />
+    ) : (
+      <input
+        className={styles.input}
+        id={id}
+        name={name}
+        value={value}
+        onInput={handleInput}
+        type={type}
+        defaultChecked={type === "checkbox" && value}
+        required={isRequired}
+      />
+    );
   return (
     <>
       {type !== "checkbox" ? (
         <div className={styles.colWrapper}>
-          {labelEl}
+          {label && labelEl}
           {input}
         </div>
       ) : (

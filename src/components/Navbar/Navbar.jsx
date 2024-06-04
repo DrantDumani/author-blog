@@ -15,7 +15,11 @@ function Navbar() {
           </Link>
         </li>
         <li className={styles.marLeft}>
-          <Link className={styles.navLink} to="/new">
+          <Link
+            className={styles.navLink}
+            to="/new"
+            state={{ isEdit: true, newPost: true }}
+          >
             New Post
           </Link>
         </li>
