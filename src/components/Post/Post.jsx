@@ -4,6 +4,7 @@ import PostView from "../../components/PostView/PostView";
 import FormComponent from "../../components/Form/Form";
 import InputWrapper from "../../components/InputWrapper/InputWrapper";
 import Button from "../../components/Button/Button";
+import style from "./Post.module.css";
 
 function Post({ post, submitHandler }) {
   const { state } = useLocation();
@@ -41,7 +42,7 @@ function Post({ post, submitHandler }) {
   };
 
   return (
-    <>
+    <div className={style.postWrapper}>
       {!editMode ? (
         <Button btnText="Edit" clickHandler={toggleEditMode} />
       ) : (
@@ -104,7 +105,7 @@ function Post({ post, submitHandler }) {
           edited_at={post.edited_at}
         />
       )}
-    </>
+    </div>
   );
 }
 

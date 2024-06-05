@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
+import style from "./PostView.module.css";
 
 let tagCounter = 0;
+
+function humanReadable(timestamp) {
+  const readable = new Date(timestamp);
+  return readable.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
 
 function PostView({
   title,
@@ -13,19 +23,28 @@ function PostView({
 }) {
   return (
     <div>
-      <h1>{title}</h1>
-      {subTitle && <h2>{subTitle}</h2>}
+      <h1 className={style.title}>{title}</h1>
+      {subTitle && <h2 className={style.subTitle}>{subTitle}</h2>}
 
-      <p>
-        {timestamp && isPublished ? `Published: ${timestamp}` : "Unpublished"}
+      <p className={style.time}>
+        {timestamp && isPublished
+          ? `Published: ${humanReadable(timestamp)}`
+          : "Unpublished"}
       </p>
-      {edited_at && <p>Edited: {edited_at}</p>}
+      {edited_at && (
+        <p className={style.time}>Edited: {humanReadable(edited_at)}</p>
+      )}
 
-      <p>{content}</p>
-      <ul>
+      <p className={style.content}>{content}</p>
+      <ul className={style.tagWrapper}>
         {tags.map((tag) => (
           <li key={tagCounter++}>
-            <Link to={`/search?tag=${tag}`}>#{tag}</Link>
+            <Link
+              className={style.tagLink}
+              to={`/search?tag=${tag.replaceAll(" ", "+")}`}
+            >
+              #{tag}
+            </Link>
           </li>
         ))}
       </ul>

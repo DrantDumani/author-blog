@@ -9,3 +9,9 @@
 .title {
   margin-bottom: 1.5rem;
 }
+
+.errText {
+  color: #940000;
+  font-style: italic;
+  padding-top: 0.4rem;
+}

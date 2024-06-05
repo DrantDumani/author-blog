@@ -1,14 +1,10 @@
-import { useState } from "react";
-import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import routes from "./router/routes";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const router = createBrowserRouter(routes);
 
-  return (
-    <>
-      <testRouter />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

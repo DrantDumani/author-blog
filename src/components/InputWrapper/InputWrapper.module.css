@@ -18,7 +18,17 @@
   padding: 0.25rem;
   border-radius: 0.5rem;
   border: 1.5px solid #000;
-  width: 15rem;
+  min-width: 15rem;
+  max-width: 37.5rem;
   font-family: Roboto, "Franklin Gothic Medium", "Arial Narrow", Arial,
     sans-serif;
+  resize: none;
+}
+
+.input[type="checkbox"] {
+  min-width: auto;
+}
+
+.input:focus {
+  outline: 1.5px solid #00f;
 }

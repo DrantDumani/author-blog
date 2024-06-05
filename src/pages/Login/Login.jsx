@@ -57,7 +57,7 @@ function Login() {
         />
         <Button type="submit" btnText="Log In" />
       </FormComponent>
-      {err && <p>{err}</p>}
+      {err && <p className={styles.errText}>{err}</p>}
     </div>
   );
 }

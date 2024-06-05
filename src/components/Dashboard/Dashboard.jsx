@@ -25,11 +25,12 @@ function Dashboard() {
 
   return (
     <>
-      <h1>Posts</h1>
+      <h1 className={styles.title}>Posts</h1>
       <div className={styles.postGrid}>
         {postList.map((post) => (
-          <div key={post._id}>
+          <div className={styles.postUI} key={post._id}>
             <Link
+              className={styles.postLink}
               to={`/post/${post._id}`}
               state={{ isEdit: false, newPost: false }}
             >
@@ -40,8 +41,9 @@ function Dashboard() {
                 published={post.published}
               />
             </Link>
-            <div>
+            <div className={styles.btnDiv}>
               <Link
+                className={styles.linkBtn}
                 to={`/post/${post._id}`}
                 state={{ isEdit: true, newPost: false }}
               >
@@ -49,7 +51,7 @@ function Dashboard() {
               </Link>
               <Button
                 btnText="Delete"
-                color="red"
+                color="Red"
                 clickHandler={() => {
                   setCurrId(post._id);
                   setShowModal(true);
