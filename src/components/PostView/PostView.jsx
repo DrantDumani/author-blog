@@ -1,16 +1,8 @@
 import { Link } from "react-router-dom";
 import style from "./PostView.module.css";
+import { humanReadable } from "../../utils/humanDate";
 
 let tagCounter = 0;
-
-function humanReadable(timestamp) {
-  const readable = new Date(timestamp);
-  return readable.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-}
 
 function PostView({
   title,
