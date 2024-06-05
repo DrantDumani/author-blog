@@ -1,5 +1,7 @@
+import Dashboard from "../../components/Dashboard/Dashboard";
+
 function Search() {
-  return <h1>These are the search results</h1>;
+  return <Dashboard />;
 }
 
 export default Search;

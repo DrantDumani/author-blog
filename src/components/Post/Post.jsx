@@ -23,7 +23,8 @@ function Post({ post, submitHandler }) {
   const editContent = (e) => setContent(e.target.value);
   const editPublished = () => setIsPublished(!isPublished);
   const editTags = (e) => {
-    const newTags = e.target.value.split(",");
+    const truncateSpaces = e.target.value.replace(/\s+/g, " ");
+    const newTags = truncateSpaces.split(",");
     setTags(newTags);
   };
 

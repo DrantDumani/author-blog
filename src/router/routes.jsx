@@ -6,8 +6,7 @@ import EditPost from "../pages/EditPost/EditPost";
 import NewPost from "../pages/NewPost/NewPost";
 import ErrorPage from "../pages/Error/ErrorPage";
 import NotAuthed from "../components/NotAuthed/NotAuthed";
-import { loginAction, createPost, editPost } from "../utils/actions";
-import { getPosts, getSinglePost } from "../utils/loaders";
+import { getPosts, getSinglePost, getPostsWithQuery } from "../utils/loaders";
 
 const routes = [
   {
@@ -22,17 +21,16 @@ const routes = [
       {
         element: <Search />,
         path: "/search",
+        loader: getPostsWithQuery,
       },
       {
         path: "/post/:postId",
         element: <EditPost />,
         loader: getSinglePost,
-        action: editPost,
       },
       {
         path: "/new",
         element: <NewPost />,
-        // action: createPost,
       },
     ],
   },

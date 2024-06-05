@@ -1,4 +1,3 @@
-// import Post from "../Post/Post";
 import Post from "../../components/Post/Post";
 import { handleData } from "../../utils/actions";
 import { useNavigate } from "react-router-dom";
