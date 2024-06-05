@@ -2,33 +2,18 @@ import PostCard from "../PostCard/PostCard";
 import Button from "../Button/Button";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import SearchBar from "../SearchBar/SearchBar";
-import { useLoaderData, Link, useLocation } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import { useState, useEffect } from "react";
-import { handleData } from "../../utils/actions";
 
 function Dashboard() {
-  const posts = useLoaderData();
-  const [postList, setPostList] = useState(posts);
+  let postList = useLoaderData();
   const [showModal, setShowModal] = useState(false);
   const [currId, setCurrId] = useState("");
-  const { search } = useLocation();
 
   useEffect(() => {
-    setPostList(posts);
-  }, [search]);
-
-  const deletePost = async () => {
-    const resp = await handleData(`posts/${currId}`, {}, "DELETE");
-    const data = await resp.json();
-
-    if (resp.ok) {
-      if (data) {
-        const newList = postList.filter((post) => post._id !== currId);
-        setPostList(newList);
-      } else return;
-    } else throw new Response("There was en error processing your request.");
-  };
+    setShowModal(false);
+  }, [postList]);
 
   return (
     <>
@@ -74,10 +59,8 @@ function Dashboard() {
 
           {showModal && (
             <DeleteModal
-              confirmHandler={() => {
-                deletePost();
-                setShowModal(false);
-              }}
+              btnName="postId"
+              btnValue={currId}
               closeModal={() => {
                 setShowModal(false);
               }}

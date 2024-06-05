@@ -7,6 +7,7 @@ import NewPost from "../pages/NewPost/NewPost";
 import ErrorPage from "../pages/Error/ErrorPage";
 import NotAuthed from "../components/NotAuthed/NotAuthed";
 import { getPosts, getSinglePost, getPostsWithQuery } from "../utils/loaders";
+import { deletePost } from "../utils/actions";
 
 const routes = [
   {
@@ -17,6 +18,7 @@ const routes = [
         path: "/",
         element: <Dashboard />,
         loader: getPosts,
+        action: deletePost,
       },
       {
         element: <Search />,
