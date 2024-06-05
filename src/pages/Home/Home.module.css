@@ -30,8 +30,4 @@
     margin: 0 auto;
     max-width: 68.75rem;
   }
-
-  .main > *:last-child {
-    max-width: 100%;
-  }
 }
