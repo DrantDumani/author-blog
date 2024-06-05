@@ -1,5 +1,3 @@
-import { redirect } from "react-router-dom";
-
 const apiStr = "http://localhost:3000/";
 
 export const handleData = async (

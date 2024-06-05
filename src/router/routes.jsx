@@ -42,7 +42,6 @@ const routes = [
       {
         path: "/login",
         element: <Login />,
-        // action: loginAction,
       },
     ],
   },
