@@ -17,7 +17,7 @@ function SearchBar() {
       className={style.searchForm}
       role="search"
       method="GET"
-      action={`/search/?${searchTag.replace(/\s/g, "+")}`}
+      action={`/search/?${searchTag.replace(/\s+/g, "+")}`}
     >
       <label htmlFor={id}>
         <SearchSVG />
