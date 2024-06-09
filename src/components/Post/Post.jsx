@@ -1,10 +1,12 @@
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PostView from "../../components/PostView/PostView";
 import FormComponent from "../../components/Form/Form";
 import InputWrapper from "../../components/InputWrapper/InputWrapper";
 import Button from "../../components/Button/Button";
 import style from "./Post.module.css";
+
+import { Editor } from "@tinymce/tinymce-react";
 
 function Post({ post, submitHandler }) {
   const { state } = useLocation();
@@ -17,10 +19,11 @@ function Post({ post, submitHandler }) {
   const [tags, setTags] = useState(post.tags || []);
   const [err, setErr] = useState("");
 
+  const editorRef = useRef(null);
+
   const toggleEditMode = () => setEditMode(!editMode);
   const editTitle = (e) => setTitle(e.target.value);
   const editSubTitle = (e) => setSubTitle(e.target.value);
-  const editContent = (e) => setContent(e.target.value);
   const editPublished = () => setIsPublished(!isPublished);
   const editTags = (e) => {
     const truncateSpaces = e.target.value.replace(/\s+/g, " ");
@@ -66,14 +69,49 @@ function Post({ post, submitHandler }) {
               isRequired={false}
               name="subTitle"
             />
-            <InputWrapper
-              label="Content: "
-              name="content"
-              handleInput={editContent}
-              isRequired={true}
-              value={content}
-              type="textarea"
-            />
+
+            <>
+              <Editor
+                onInput={() => {
+                  setContent(editorRef.current.getContent());
+                }}
+                apiKey="sbnr0d8awyes1h6ow0twlrblmv4ndt9xt44p30b1jnw8fv6l"
+                onInit={(evt, editor) => (editorRef.current = editor)}
+                value={content}
+                init={{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    "advlist",
+                    "autolink",
+                    "lists",
+                    "link",
+                    "image",
+                    "charmap",
+                    "preview",
+                    "anchor",
+                    "searchreplace",
+                    "visualblocks",
+                    "code",
+                    "fullscreen",
+                    "insertdatetime",
+                    "media",
+                    "table",
+                    "codesample",
+                    "help",
+                    "wordcount",
+                  ],
+                  toolbar:
+                    "undo redo | blocks | image " +
+                    "codesample bold italic forecolor | alignleft aligncenter " +
+                    "alignright alignjustify | bullist numlist outdent indent | " +
+                    "removeformat | help",
+                  content_style:
+                    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                }}
+              />
+            </>
+
             <InputWrapper
               label="Tags:"
               value={tags.join(",")}

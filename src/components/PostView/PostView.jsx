@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import style from "./PostView.module.css";
 import { humanReadable } from "../../utils/humanDate";
+import parse from "html-react-parser";
 
 let tagCounter = 0;
 
@@ -27,7 +28,7 @@ function PostView({
         <p className={style.time}>Edited: {humanReadable(edited_at)}</p>
       )}
 
-      <p className={style.content}>{content}</p>
+      <div>{parse(content)}</div>
       <ul className={style.tagWrapper}>
         {tags.map((tag) => (
           <li key={tagCounter++}>
