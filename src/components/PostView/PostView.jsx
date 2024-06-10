@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import style from "./PostView.module.css";
 import { humanReadable } from "../../utils/humanDate";
 import parse from "html-react-parser";
+import { useEffect } from "react";
+import hljs from "highlight.js/lib/common";
+import "highlight.js/styles/github.css";
 
 let tagCounter = 0;
 
@@ -14,6 +17,9 @@ function PostView({
   edited_at,
   tags,
 }) {
+  useEffect(() => {
+    hljs.highlightAll();
+  }, []);
   return (
     <div>
       <h1 className={style.title}>{title}</h1>

@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import PostView from "../../components/PostView/PostView";
 import FormComponent from "../../components/Form/Form";
 import InputWrapper from "../../components/InputWrapper/InputWrapper";
@@ -18,8 +18,6 @@ function Post({ post, submitHandler }) {
   const [isPublished, setIsPublished] = useState(post.published || false);
   const [tags, setTags] = useState(post.tags || []);
   const [err, setErr] = useState("");
-
-  const editorRef = useRef(null);
 
   const toggleEditMode = () => setEditMode(!editMode);
   const editTitle = (e) => setTitle(e.target.value);
@@ -72,12 +70,9 @@ function Post({ post, submitHandler }) {
 
             <>
               <Editor
-                onInput={() => {
-                  setContent(editorRef.current.getContent());
-                }}
                 apiKey="sbnr0d8awyes1h6ow0twlrblmv4ndt9xt44p30b1jnw8fv6l"
-                onInit={(evt, editor) => (editorRef.current = editor)}
                 value={content}
+                onEditorChange={(newValue) => setContent(newValue)}
                 init={{
                   height: 500,
                   menubar: false,
