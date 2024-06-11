@@ -1,0 +1,36 @@
+.title {
+  margin-bottom: 2rem;
+}
+
+.subTitle {
+  font-size: 16px;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.time {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: #2f2f2f;
+  margin-bottom: 0.4rem;
+}
+
+.content {
+  margin: 1rem 0;
+  font-size: 1.125rem;
+}
+
+.tagWrapper {
+  display: flex;
+  gap: 0.3rem 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tagLink {
+  font-size: 0.875rem;
+  color: #2f2f2f;
+}
+
+.tagLink:hover {
+  color: #939393;
+}

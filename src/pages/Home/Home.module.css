@@ -1,0 +1,33 @@
+@value variables: "../../styles/variables.css";
+@value mobPad, tabPad from variables;
+
+.header,
+.main {
+  padding: mobPad;
+}
+
+.header {
+  border-bottom: 1.5px solid #000;
+  background-color: #d6a575;
+}
+
+@media (min-width: 768px) {
+  .header,
+  .main {
+    padding-left: tabPad;
+    padding-right: tabPad;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header,
+  .main {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .header > nav,
+  .main > * {
+    margin: 0 auto;
+    max-width: 68.75rem;
+  }
+}
