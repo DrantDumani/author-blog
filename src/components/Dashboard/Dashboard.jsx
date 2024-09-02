@@ -23,10 +23,10 @@ function Dashboard() {
         <>
           <div className={styles.postGrid}>
             {postList.map((post) => (
-              <div className={styles.postUI} key={post._id}>
+              <div className={styles.postUI} key={post.id}>
                 <Link
                   className={styles.postLink}
-                  to={`/post/${post._id}`}
+                  to={`/post/${post.id}`}
                   state={{ isEdit: false, newPost: false }}
                 >
                   <PostCard
@@ -39,7 +39,7 @@ function Dashboard() {
                 <div className={styles.btnDiv}>
                   <Link
                     className={styles.linkBtn}
-                    to={`/post/${post._id}`}
+                    to={`/post/${post.id}`}
                     state={{ isEdit: true, newPost: false }}
                   >
                     Edit
@@ -48,7 +48,7 @@ function Dashboard() {
                     btnText="Delete"
                     color="Red"
                     clickHandler={() => {
-                      setCurrId(post._id);
+                      setCurrId(post.id);
                       setShowModal(true);
                     }}
                   ></Button>

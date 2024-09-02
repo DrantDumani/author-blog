@@ -11,6 +11,14 @@
   background-color: #d6a575;
 }
 
+.main {
+  transition: opacity 1s ease-in;
+}
+
+.loading {
+  opacity: 20%;
+}
+
 @media (min-width: 768px) {
   .header,
   .main {

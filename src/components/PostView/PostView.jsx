@@ -6,8 +6,6 @@ import { useEffect } from "react";
 import hljs from "highlight.js/lib/common";
 import "highlight.js/styles/github.css";
 
-let tagCounter = 0;
-
 function PostView({
   title,
   subTitle,
@@ -36,8 +34,8 @@ function PostView({
 
       <div>{parse(content)}</div>
       <ul className={style.tagWrapper}>
-        {tags.map((tag) => (
-          <li key={tagCounter++}>
+        {tags.map((tag, ind) => (
+          <li key={ind}>
             <Link
               className={style.tagLink}
               to={`/search?tag=${tag.replaceAll(" ", "+")}`}

@@ -1,8 +1,9 @@
-const apiStr = "https://almagorge-blog-api.adaptable.app/";
+// const apiStr = "https://almagorge-blog-api.adaptable.app/";
+const apiStr = "http://localhost:3000/";
 
 export const getPosts = async () => {
   const token = localStorage.getItem("token");
-  const resp = await fetch(apiStr + "posts", {
+  const resp = await fetch(apiStr + "posts/writer_posts", {
     mode: "cors",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -31,7 +32,7 @@ export const getPostsWithQuery = async ({ request }) => {
 
 export const getSinglePost = async ({ params }) => {
   const token = localStorage.getItem("token");
-  const resp = await fetch(`${apiStr}posts/${params.postId}`, {
+  const resp = await fetch(`${apiStr}posts/${params.postId}/writer_post`, {
     mode: "cors",
     headers: { Authorization: `Bearer ${token}` },
   });

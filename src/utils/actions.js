@@ -1,4 +1,5 @@
-const apiStr = "https://almagorge-blog-api.adaptable.app/";
+// const apiStr = "https://almagorge-blog-api.adaptable.app/";
+const apiStr = "http://localhost:3000/";
 
 export const handleData = async (
   endPoint,

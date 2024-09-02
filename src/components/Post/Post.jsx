@@ -16,7 +16,7 @@ function Post({ post, submitHandler }) {
   const [subTitle, setSubTitle] = useState(post.subTitle || "");
   const [content, setContent] = useState(post.content || "");
   const [isPublished, setIsPublished] = useState(post.published || false);
-  const [tags, setTags] = useState(post.tags || []);
+  const [tags, setTags] = useState(post?.tags?.map((tag) => tag.name) || []);
   const [err, setErr] = useState("");
 
   const toggleEditMode = () => setEditMode(!editMode);
