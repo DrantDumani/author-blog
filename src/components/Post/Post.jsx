@@ -64,7 +64,7 @@ function Post({ post, submitHandler }) {
               label="Sub title:"
               value={subTitle}
               handleInput={editSubTitle}
-              isRequired={false}
+              isRequired={true}
               name="subTitle"
             />
 
