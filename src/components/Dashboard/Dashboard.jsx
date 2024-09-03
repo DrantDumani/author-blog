@@ -2,14 +2,18 @@ import PostCard from "../PostCard/PostCard";
 import Button from "../Button/Button";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import SearchBar from "../SearchBar/SearchBar";
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, useLocation } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import { useState, useEffect } from "react";
 
 function Dashboard() {
   let postList = useLoaderData();
+  const location = useLocation();
   const [showModal, setShowModal] = useState(false);
   const [currId, setCurrId] = useState("");
+
+  const userRole = localStorage.getItem("role");
+  const userId = Number(localStorage.getItem("userId"));
 
   useEffect(() => {
     setShowModal(false);
@@ -18,7 +22,19 @@ function Dashboard() {
   return (
     <>
       <SearchBar />
-      <h1 className={styles.title}>Posts</h1>
+      <div className={styles.headerWrapper}>
+        <h1 className={styles.title}>Posts</h1>
+        {userRole === "Super" &&
+          (location.pathname === "/" ? (
+            <Link to="/admin" className={styles.linkBtn}>
+              Admin Panel
+            </Link>
+          ) : (
+            <Link to="/" className={styles.linkBtn}>
+              Home
+            </Link>
+          ))}
+      </div>
       {postList.length ? (
         <>
           <div className={styles.postGrid}>
@@ -37,13 +53,15 @@ function Dashboard() {
                   />
                 </Link>
                 <div className={styles.btnDiv}>
-                  <Link
-                    className={styles.linkBtn}
-                    to={`/post/${post.id}`}
-                    state={{ isEdit: true, newPost: false }}
-                  >
-                    Edit
-                  </Link>
+                  {userId === post.authorId && (
+                    <Link
+                      className={styles.linkBtn}
+                      to={`/post/${post.id}`}
+                      state={{ isEdit: true, newPost: false }}
+                    >
+                      Edit
+                    </Link>
+                  )}
                   <Button
                     btnText="Delete"
                     color="Red"

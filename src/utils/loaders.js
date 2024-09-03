@@ -15,6 +15,20 @@ export const getPosts = async () => {
   }
 };
 
+export const getAllPosts = async () => {
+  const token = localStorage.getItem("token");
+  const resp = await fetch(apiStr + "posts/all", {
+    mode: "cors",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (resp.ok) {
+    const data = await resp.json();
+    return data.posts;
+  } else {
+    throw new Response("Error retrieving posts");
+  }
+};
+
 export const getPostsWithQuery = async ({ request }) => {
   const token = localStorage.getItem("token");
   const url = new URL(request.url);

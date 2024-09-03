@@ -4,6 +4,12 @@
   gap: 1rem;
 }
 
+.headerWrapper {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
 .title {
   padding: 1rem 0;
 }

@@ -4,6 +4,8 @@ import styles from "./Navbar.module.css";
 function Navbar() {
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("username");
   };
 
   return (
