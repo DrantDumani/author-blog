@@ -12,6 +12,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  border: 1.5px solid #000;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
 }
 
 .postLink:hover {
@@ -21,6 +24,7 @@
 .btnDiv {
   display: flex;
   gap: 1rem;
+  margin-top: auto;
 }
 
 .linkBtn {
