@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 import { useEffect } from "react";
 import hljs from "highlight.js/lib/common";
 import "highlight.js/styles/github.css";
+import PropTypes from "prop-types";
 
 function PostView({
   title,
@@ -48,5 +49,15 @@ function PostView({
     </div>
   );
 }
+
+PostView.propTypes = {
+  title: PropTypes.string,
+  subTitle: PropTypes.string,
+  content: PropTypes.string,
+  isPublished: PropTypes.bool,
+  timestamp: PropTypes.string,
+  edited_at: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default PostView;

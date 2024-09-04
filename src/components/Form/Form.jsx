@@ -1,12 +1,17 @@
 import styles from "./Form.module.css";
-import { Form } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function FormComponent({ children, method = "GET", action, submitHandler }) {
+function FormComponent({ children, submitHandler }) {
   return (
     <form className={styles.form} onSubmit={submitHandler}>
       {children}
     </form>
   );
 }
+
+FormComponent.propTypes = {
+  children: PropTypes.node,
+  submitHandler: PropTypes.func,
+};
 
 export default FormComponent;

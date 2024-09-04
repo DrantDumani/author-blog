@@ -1,5 +1,7 @@
-// const apiStr = "https://almagorge-blog-api.adaptable.app/";
-const apiStr = "http://localhost:3000/";
+const apiStr =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:3000/"
+    : "https://almagorge-blog-api.adaptable.app/";
 
 export const getPosts = async () => {
   const token = localStorage.getItem("token");
@@ -9,8 +11,9 @@ export const getPosts = async () => {
   });
   if (resp.ok) {
     const data = await resp.json();
-    return data.posts;
+    return data.posts || null;
   } else {
+    console.log("oops");
     throw new Response("Error retrieving posts");
   }
 };

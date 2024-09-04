@@ -1,4 +1,4 @@
-import { useLoaderData, useParams, useNavigate } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { handleData } from "../../utils/actions";
 import Post from "../../components/Post/Post";
 

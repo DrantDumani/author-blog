@@ -1,4 +1,5 @@
 import styles from "./Button.module.css";
+import PropTypes from "prop-types";
 
 function Button({
   color = "Default",
@@ -20,5 +21,14 @@ function Button({
     </button>
   );
 }
+
+Button.propTypes = {
+  color: PropTypes.string,
+  clickHandler: PropTypes.func,
+  type: PropTypes.string,
+  btnText: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.string,
+};
 
 export default Button;

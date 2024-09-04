@@ -5,6 +5,7 @@ import FormComponent from "../../components/Form/Form";
 import InputWrapper from "../../components/InputWrapper/InputWrapper";
 import Button from "../../components/Button/Button";
 import style from "./Post.module.css";
+import PropTypes from "prop-types";
 
 import { Editor } from "@tinymce/tinymce-react";
 
@@ -142,5 +143,10 @@ function Post({ post, submitHandler }) {
     </div>
   );
 }
+
+Post.propTypes = {
+  post: PropTypes.object,
+  submitHandler: PropTypes.func,
+};
 
 export default Post;

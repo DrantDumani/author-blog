@@ -1,6 +1,7 @@
 import Button from "../Button/Button";
 import { useFetcher } from "react-router-dom";
 import style from "./DeleteModal.module.css";
+import PropTypes from "prop-types";
 
 function DeleteModal({ closeModal, btnName, btnValue }) {
   const fetcher = useFetcher();
@@ -18,5 +19,11 @@ function DeleteModal({ closeModal, btnName, btnValue }) {
     </div>
   );
 }
+
+DeleteModal.propTypes = {
+  closeModal: PropTypes.func,
+  btnName: PropTypes.string,
+  btnValue: PropTypes.string,
+};
 
 export default DeleteModal;
