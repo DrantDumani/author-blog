@@ -5,6 +5,7 @@ import FormComponent from "../../components/Form/Form";
 import InputWrapper from "../../components/InputWrapper/InputWrapper";
 import Button from "../../components/Button/Button";
 import style from "./Post.module.css";
+import PropTypes from "prop-types";
 
 import { Editor } from "@tinymce/tinymce-react";
 
@@ -16,7 +17,7 @@ function Post({ post, submitHandler }) {
   const [subTitle, setSubTitle] = useState(post.subTitle || "");
   const [content, setContent] = useState(post.content || "");
   const [isPublished, setIsPublished] = useState(post.published || false);
-  const [tags, setTags] = useState(post.tags || []);
+  const [tags, setTags] = useState(post?.tags?.map((tag) => tag.name) || []);
   const [err, setErr] = useState("");
 
   const toggleEditMode = () => setEditMode(!editMode);
@@ -64,7 +65,7 @@ function Post({ post, submitHandler }) {
               label="Sub title:"
               value={subTitle}
               handleInput={editSubTitle}
-              isRequired={false}
+              isRequired={true}
               name="subTitle"
             />
 
@@ -142,5 +143,10 @@ function Post({ post, submitHandler }) {
     </div>
   );
 }
+
+Post.propTypes = {
+  post: PropTypes.object,
+  submitHandler: PropTypes.func,
+};
 
 export default Post;

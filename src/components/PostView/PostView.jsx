@@ -5,8 +5,7 @@ import parse from "html-react-parser";
 import { useEffect } from "react";
 import hljs from "highlight.js/lib/common";
 import "highlight.js/styles/github.css";
-
-let tagCounter = 0;
+import PropTypes from "prop-types";
 
 function PostView({
   title,
@@ -36,8 +35,8 @@ function PostView({
 
       <div>{parse(content)}</div>
       <ul className={style.tagWrapper}>
-        {tags.map((tag) => (
-          <li key={tagCounter++}>
+        {tags.map((tag, ind) => (
+          <li key={ind}>
             <Link
               className={style.tagLink}
               to={`/search?tag=${tag.replaceAll(" ", "+")}`}
@@ -50,5 +49,15 @@ function PostView({
     </div>
   );
 }
+
+PostView.propTypes = {
+  title: PropTypes.string,
+  subTitle: PropTypes.string,
+  content: PropTypes.string,
+  isPublished: PropTypes.bool,
+  timestamp: PropTypes.string,
+  edited_at: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default PostView;

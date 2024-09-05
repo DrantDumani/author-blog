@@ -1,8 +1,26 @@
-const apiStr = "https://almagorge-blog-api.adaptable.app/";
+const apiStr =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:3000/"
+    : "https://almagorge-blog-api.adaptable.app/";
 
 export const getPosts = async () => {
   const token = localStorage.getItem("token");
-  const resp = await fetch(apiStr + "posts", {
+  const resp = await fetch(apiStr + "posts/writer_posts", {
+    mode: "cors",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (resp.ok) {
+    const data = await resp.json();
+    return data.posts || null;
+  } else {
+    console.log("oops");
+    throw new Response("Error retrieving posts");
+  }
+};
+
+export const getAllPosts = async () => {
+  const token = localStorage.getItem("token");
+  const resp = await fetch(apiStr + "posts/all", {
     mode: "cors",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -31,7 +49,7 @@ export const getPostsWithQuery = async ({ request }) => {
 
 export const getSinglePost = async ({ params }) => {
   const token = localStorage.getItem("token");
-  const resp = await fetch(`${apiStr}posts/${params.postId}`, {
+  const resp = await fetch(`${apiStr}posts/${params.postId}/writer_post`, {
     mode: "cors",
     headers: { Authorization: `Bearer ${token}` },
   });

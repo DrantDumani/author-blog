@@ -7,7 +7,7 @@ function NewPost() {
     const resp = await handleData("posts", input, "POST");
     const data = await resp.json();
     if (resp.ok) {
-      navigate(`/post/${data._id}`);
+      navigate(`/post/${data.id}`);
     } else if (resp.status === 403) {
       errHandler(data);
     } else throw new Response("Error processing request");

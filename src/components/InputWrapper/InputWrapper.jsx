@@ -59,16 +59,17 @@ function InputWrapper({
   );
 }
 
-InputWrapper.proptypes = {
+InputWrapper.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   handleInput: PropTypes.func,
-  type: PropTypes.text,
+  type: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
   ]),
+  isRequired: PropTypes.bool,
 };
 
 export default InputWrapper;

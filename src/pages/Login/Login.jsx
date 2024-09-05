@@ -28,7 +28,9 @@ function Login() {
     const data = await resp.json();
     if (resp.ok) {
       localStorage.setItem("token", data.token);
-      console.log("Sure");
+      localStorage.setItem("role", data.role);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("userId", data.id);
       navigate("/");
     } else if (resp.status === 401) {
       setErr(data.err);

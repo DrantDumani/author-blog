@@ -1,5 +1,6 @@
 import style from "./PostCard.module.css";
 import { humanReadable } from "../../utils/humanDate";
+import PropTypes from "prop-types";
 
 function PostCard({ title, subTitle, date, published }) {
   return (
@@ -15,5 +16,12 @@ function PostCard({ title, subTitle, date, published }) {
     </article>
   );
 }
+
+PostCard.propTypes = {
+  title: PropTypes.string,
+  subTitle: PropTypes.string,
+  date: PropTypes.string,
+  published: PropTypes.bool,
+};
 
 export default PostCard;
